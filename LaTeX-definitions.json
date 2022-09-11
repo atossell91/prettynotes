@@ -1,0 +1,12 @@
+[
+	{
+		"name": "Header",
+		"NumArguments": 1,
+		"definition": "\textbf{#1}"
+	},
+	{
+		"name": "NoteElement",
+		"NumArguments": 2,
+		"definition": "#1 \\begin{itemize}#2 \\end{itemize}"
+	}
+]
