@@ -14,17 +14,35 @@ namespace prettynotes
 
         public NoteElement(string text) : this()
         {
-            Text = text;
+            NoteElementFormatParser FormatParser = new NoteElementFormatParser(text);
+            Text = FormatParser.ParsedString;
+            FormatInfo = FormatParser.FormatInfo;
         }
 
+        public NoteElementFormatInformation FormatInfo = new NoteElementFormatInformation();
         public string Text { get; set; }
-        public NoteElement Parent { get; set; } = null;
+
+        private NoteElement parent;
+        public NoteElement Parent {
+            get { return parent; }
+            set
+            {
+                parent = value;
+                HasParent = parent != null;
+            }
+        }
+
+        public bool HasParent { get; private set; }
         List<NoteElement> ChildNotes;
 
         public void AddChild(NoteElement e)
         {
             e.Parent = this;
             ChildNotes.Add(e);
+        }
+        public bool HasChildren()
+        {
+            return ChildNotes.Count > 0;
         }
         public NoteElement GetLastChild()
         {

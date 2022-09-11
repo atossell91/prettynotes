@@ -7,74 +7,37 @@ using System.IO;
 
 namespace prettynotes
 {
-    public class NoteFileParser
+    static class NoteFileParser
     {
-        //TODO: Redo this whole algorithm
-        //TODO: Don't code until you know what you're doing
-        public void parse(string filename)
+        public static void parse(string[] filecontent)
         {
-            // Open, read, and close the file
-            string[] lines = File.ReadAllLines(filename);
-            
-            // Stop if there is less than 1 line
-            if (lines.Length < 1)
+            NoteElement currentElement = new NoteElement();
+
+            int currentIndent = 0;
+            for (int n =1; n < filecontent.Length; ++n)
             {
-                return;
-            }
+                string line = filecontent[n];
 
-            // Set the title (first line is always the title)
-            NoteDocument doc = new NoteDocument();
-            doc.Title = lines[0];
-            NoteElement currentNote = doc.Notes[0];
+                if (String.IsNullOrWhiteSpace(line)) continue;
 
-            // Now perform the algorithm
-            int nestLevel = 0;
-            for (int n =1; n < lines.Length; ++n)
-            {
-                string currentLine = lines[n];
-                if (String.IsNullOrWhiteSpace(currentLine))
+                int lineIndent = IndentCounter.CountIndent(line);
+                if (lineIndent == currentIndent)
                 {
-                    //Skip empty lines
-                    continue;
+                    currentElement.AddChild(new NoteElement(line));
                 }
-
-                //TODO: Need to handle headers and other modifiers
-                int nest = IndentCounter.CountIndent(currentLine);
-                if (nest == nestLevel)
+                else if (lineIndent > currentIndent)
                 {
-                    //If nest values are the same, add to list
-                    currentNote.AddChild(new NoteElement(currentLine));
+                    currentElement = currentElement.GetLastChild();
+                    currentElement.AddChild(new NoteElement(line));
                 }
-                else if (nest < nestLevel)
+                else if (lineIndent > currentIndent)
                 {
-                    //If new value is less, move up accordingly
-                    int diff = nestLevel - nest;
-                    for (int i =0; i < diff; ++i)
+                    int lvlDif = lineIndent - currentIndent;
+                    for (int l =0; l < lvlDif; ++l)
                     {
-                        if (currentNote.Parent == null)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            currentNote = currentNote.Parent;
-                        }
+                        currentElement = currentElement.Parent;
                     }
-                    nestLevel = nest;
-                    currentNote.AddChild(new NoteElement(currentLine));
-                }
-                else if (nest > nestLevel)
-                {
-                    //If new value is greater, create child
-                    NoteElement ne = new NoteElement(currentLine);
-                    NoteElement lastChild = currentNote.GetLastChild();
-                    if (lastChild == null)
-                    {
-                        currentNote.AddChild(ne);
-
-                    }
-                    nestLevel = nest;
-                    currentNote.AddChild(new NoteElement(currentLine));
+                    currentElement.AddChild(new NoteElement(line));
                 }
             }
         }

@@ -79,6 +79,8 @@
     <Compile Include="LaTeXCommandJsonLoader.cs" />
     <Compile Include="NoteDocument.cs" />
     <Compile Include="NoteElement.cs" />
+    <Compile Include="NoteElementFormatInformation.cs" />
+    <Compile Include="NoteElementFormatParser.cs" />
     <Compile Include="NoteFileParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
