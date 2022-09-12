@@ -54,6 +54,7 @@
     <Compile Include="LatexCommandTest.cs" />
     <Compile Include="TexHelperTest.cs" />
     <Compile Include="IndentCounterTest.cs" />
+    <Compile Include="NoteFileTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

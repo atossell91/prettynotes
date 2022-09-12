@@ -7,12 +7,13 @@ using System.IO;
 
 namespace prettynotes
 {
-    static class NoteFileParser
+    public static class NoteFileParser
     {
-        public static void parse(string[] filecontent)
+        public static NoteElement Parse(string[] filecontent)
         {
-            NoteElement currentElement = new NoteElement();
-
+            NoteElement root = new NoteElement();
+            NoteElement currentElement = root;
+            root.Text = filecontent[0];
             int currentIndent = 0;
             for (int n =1; n < filecontent.Length; ++n)
             {
@@ -40,6 +41,7 @@ namespace prettynotes
                     currentElement.AddChild(new NoteElement(line));
                 }
             }
+            return root;
         }
     }
 }

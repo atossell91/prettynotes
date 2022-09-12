@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace prettynotes
     public class NoteElement : ITeXable
     {
         public NoteElement() {
-            ChildNotes = new List<NoteElement>();
+            childNotes = new List<NoteElement>();
         }
 
         public NoteElement(string text) : this()
@@ -31,28 +32,37 @@ namespace prettynotes
                 HasParent = parent != null;
             }
         }
+        public int ChildCount { get; private set; } = 0;
 
         public bool HasParent { get; private set; }
-        List<NoteElement> ChildNotes;
+        List<NoteElement> childNotes;
+        public List<NoteElement> Children
+        {
+            get
+            {
+                return childNotes;
+            }
+        }
 
         public void AddChild(NoteElement e)
         {
             e.Parent = this;
-            ChildNotes.Add(e);
+            childNotes.Add(e);
+            ++ChildCount;
         }
         public bool HasChildren()
         {
-            return ChildNotes.Count > 0;
+            return childNotes.Count > 0;
         }
         public NoteElement GetLastChild()
         {
-            if (ChildNotes.Count < 1)
+            if (childNotes.Count < 1)
             {
                 return null;
             }
             else
             {
-                return ChildNotes[ChildNotes.Count-1];
+                return childNotes[childNotes.Count-1];
             }
         }
         public string GetTeX()
