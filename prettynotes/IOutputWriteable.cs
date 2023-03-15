@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace prettynotes
 {
-    interface ITeXable
+    internal interface IOutputWriteable
     {
-        string GetTeX();
+        string Write();
     }
 }

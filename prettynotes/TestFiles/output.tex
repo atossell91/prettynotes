@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\usepackage{enumitem}
+\usepackage{amssymb}
+
+\renewcommand{\labelitemi}{$\blacktriangleright$}
+\renewcommand{\labelitemii}{$\rhd$}
+\renewcommand{\labelitemiii}{$>$}
+\renewcommand{\labelitemiv}{$-$}
+
+\newcommand{\NoteHeaderBig}[1]{
+    \begin{Large}\underline{\textbf{#1}}\end{Large} \\ \\ 
+}
+\newcommand{\NoteHeaderSmall}[1]{
+    \begin{large}\textbf{#1}\end{large} 
+}
+\newcommand{\NoteDocument}[1]{
+    \begin{itemize}[nolistsep, noitemsep, leftmargin=*]
+        #1
+    \end{itemize}
+}
+\newcommand{\NoteList}[1]{
+    \begin{itemize}
+        #1
+    \end{itemize}
+}
+
+\usepackage[margin=1.0in]{geometry}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+Lecture 5 - November 25th, 2022\\
+
+\NoteHeaderBig{Top header}
+\NoteHeaderSmall{Sub-header}
+\NoteList {
+    \item  Bullet point
+    \NoteList {
+        \item  Sub-Bullet
+    }
+}
+\NoteHeaderSmall{Another header}
+\NoteList {
+    \item  More content
+}
+\NoteList {
+    \item  Julie
+}
+
+\end{document}

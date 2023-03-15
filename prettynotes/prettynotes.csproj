@@ -65,6 +65,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,10 +74,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocumentTemplate.cs" />
     <Compile Include="IndentCounter.cs" />
-    <Compile Include="ITeXable.cs" />
-    <Compile Include="LaTeXCommand.cs" />
-    <Compile Include="LaTeXCommandJsonLoader.cs" />
+    <Compile Include="IOutputWriteable.cs" />
+    <Compile Include="ITemplateBuildable.cs" />
+    <Compile Include="LaTeX\LaTeXNewCommand.cs" />
+    <Compile Include="LaTeX\LaTeXPackage.cs" />
+    <Compile Include="LaTeX\LaTexRenewCommand.cs" />
+    <Compile Include="LaTeX\LaTeXTemplateBuilder.cs" />
+    <Compile Include="LaTeX\LaTeXWriter.cs" />
     <Compile Include="NoteDocument.cs" />
     <Compile Include="NoteElement.cs" />
     <Compile Include="NoteElementFormatInformation.cs" />
@@ -84,13 +90,9 @@
     <Compile Include="NoteFileParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TexHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Content Include="LaTeX-definitions.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

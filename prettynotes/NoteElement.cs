@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace prettynotes
 {
-    public class NoteElement : ITeXable
+    public class NoteElement
     {
         public NoteElement() {
             childNotes = new List<NoteElement>();
@@ -64,10 +64,6 @@ namespace prettynotes
             {
                 return childNotes[childNotes.Count-1];
             }
-        }
-        public string GetTeX()
-        {
-            throw new NotImplementedException();
         }
     }
 }

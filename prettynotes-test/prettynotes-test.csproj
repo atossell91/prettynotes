@@ -49,12 +49,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LaTeXCommandJsonLoaderTest.cs" />
+    <Compile Include="LaTeXNewCommandTest.cs" />
+    <Compile Include="LaTeXRenewCommandTest.cs" />
+    <Compile Include="LaTeXPackageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LatexCommandTest.cs" />
-    <Compile Include="TexHelperTest.cs" />
     <Compile Include="IndentCounterTest.cs" />
     <Compile Include="NoteFileTest.cs" />
+    <Compile Include="LaTeXTemplateBuilderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
